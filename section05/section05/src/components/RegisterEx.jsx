@@ -2,35 +2,36 @@ import React, {useState} from 'react';
 
 const RegisterEx = () => {
 
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [author, setAuthor] = useState("");
-    const [createdAt, setCreatedAt] = useState("");
+    const [input, setInput] = useState({
+        title: "",
+        description: "",
+        author: "",
+        createdAt: "",
+        email: ""
+    });
 
-    const onChangeTitle = (e) => {
-        setTitle(e.target.value);
+    const onChange = (e) => {
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value,
+        })
     }
-    const onChangeDescription = (e) => {
-        setDescription(e.target.value);
-    }
-    const onChangeAuthor = (e) => {
-        setAuthor(e.target.value);
-    }
-    const onCreatedAt = (e) => {
-        setCreatedAt(e.target.value);
-    }
+
     return <>
              <div>
-                <input type={"text"} onChange={onChangeTitle} value={title} placeholder={"제목"}/>
+                <input name={"title"} type={"text"} onChange={onChange} value={input.title} placeholder={"제목"}/>
              </div>
              <div>
-                <input type={"text"} onChange={onChangeDescription} value={description} placeholder={"내용"}/>
+                <input name={"description"} type={"text"} onChange={onChange} value={input.description} placeholder={"내용"}/>
              </div>
              <div>
-                <input type={"text"} onChange={onChangeAuthor} value={author} placeholder={"작성자"}/>
+                <input name={"author"} type={"text"} onChange={onChange} value={input.author} placeholder={"작성자"}/>
              </div>
              <div>
-                <input type={"date"} onChange={onCreatedAt} value={createdAt} placeholder={"작성일"}/>
+                <input name={"createdAt"} type={"date"} onChange={onChange} value={input.createdAt} placeholder={"작성일"}/>
+             </div>
+             <div>
+                 <input name={"email"} type={"email"} onChange={onChange} value={input.email} placeholder={"이메일"}/>
              </div>
            </>
 }
