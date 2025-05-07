@@ -1,13 +1,12 @@
 import './App.css'
-import Register from "./components/Register.jsx";
-
+import RegisterEx from "./components/RegisterEx.jsx";
 
 
 function App() {
 
     return (
         <>
-            <Register/>
+            <RegisterEx/>
         </>
     );
 }
