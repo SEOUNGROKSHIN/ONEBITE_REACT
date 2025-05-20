@@ -28,8 +28,8 @@ function List({ todos, onUpdate, onDelete}) {
             <h4>Todo List 🌱</h4>
             <input value={search} onChange={onChangeSearch} placeholder={"검색어를 입력해주세요."}/>
             <div className={"todos_wrapper"}>
-                {filteredTodos.map((todos) => {
-                    return <TodoItem key={todos.id} {...todos} onUpdate={onUpdate} onDelete={onDelete}/>;
+                {filteredTodos.map((todo) => {
+                    return <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} onDelete={onDelete}/>;
                 })}
             </div>
         </div>
