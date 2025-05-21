@@ -1,5 +1,4 @@
-import { useState, useRef, useReducer } from 'react'
-
+import { useState, useRef, useReducer, useCallback } from 'react'
 import "./App.css"
 import Editor from "./components/Editor.jsx";
 import Header from "./components/Header.jsx";
@@ -47,7 +46,7 @@ function App() {
   // Editor Components > content > onCreate
 
     // useReducer 적용해서 리팩토링함
-    const onCreate = (content) => {
+    const onCreate = useCallback((content) => {
         dispatch({
             type: "CREATE",
             data: {
@@ -57,19 +56,25 @@ function App() {
               date : new Date().getTime(),
             }
         })
-    };
-    const onUpdate = (targetId) => {
+    }, []);
+
+    const onUpdate = useCallback((targetId) => {
         dispatch({
             type: "UPDATE",
             targetId: targetId
-        })
-    }
-    const onDelete = (targetId) => {
+        });
+    }, []);
+
+    const onDelete = useCallback((targetId) => {
         dispatch({
-            type: "DELETE",
+            type: "UPDATE",
             targetId: targetId
-        })
-    }
+        });
+    }, []);
+
+    // 1. callback : 재생성 안하고 싶은 함수
+    // 2. 함수를 Memorization
+    // const func =  useCallback(() => {}, [])
 
   return (
     <div className={"app"}>

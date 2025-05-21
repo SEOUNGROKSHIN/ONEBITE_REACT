@@ -1,15 +1,22 @@
-import React from 'react';
 import "./TodoItem.css"
+import { memo } from "react";
 
-function TodoItem({id, isDone, content, date, onUpdate, onDelete}) {
+const TodoItem = ({
+                      id,
+                      isDone,
+                      content,
+                      date,
+                      onUpdate,
+                      onDelete,
+    }) => {
 
     const onChangeCheckbox = () => {
         onUpdate(id);
-    }
+    };
 
     const onClickDeleteButton = () => {
         onDelete(id);
-    }
+    };
 
     return (
         <div className={"TodoItem"}>
@@ -20,5 +27,20 @@ function TodoItem({id, isDone, content, date, onUpdate, onDelete}) {
         </div>
     );
 }
+/*
+memo 최적화 콜백함수 사용
+고차 컴포넌트 (HOC)
+export default memo(TodoItem, (prevProps, nextProps) => {
+    반환값에 따라, Props가 바뀌었는지 안바뀌었는지 판단
+    T -> Props 바뀌지 않음 리렌더링 X
+    F -> Props 바뀜 -> 리렌더링 O
 
-export default TodoItem;
+    if (prevProps.id !== nextProps.id) return false;
+    if (prevProps.isDone !== nextProps.isDone) return false;
+    if (prevProps.content !== nextProps.content) return false;
+    if (prevProps.date !== nextProps.date) return false;
+
+    return true;
+});
+*/
+export default memo(TodoItem);
